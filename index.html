@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#F5FBFF" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="마이꿀팁" />
+    <meta name="description" content="내가 직접 경험해서 얻은 작은 노하우를 빠르게 기록하는 개인 꿀팁 노트" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>마이꿀팁</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">MY LITTLE KNOW-HOW</p>
+          <h1>마이꿀팁<span class="title-dot" aria-hidden="true"></span></h1>
+          <p class="subtitle">내가 발견한 작은 노하우</p>
+        </div>
+        <button class="icon-button manage-button" id="openTagManager" type="button" aria-label="태그 관리" title="태그 관리">
+          <span class="sliders-icon" aria-hidden="true"></span>
+        </button>
+      </header>
+
+      <main>
+        <label class="search-box" for="searchInput">
+          <span class="search-icon" aria-hidden="true"></span>
+          <input id="searchInput" type="search" placeholder="내 꿀팁 검색" autocomplete="off" />
+          <button id="clearSearch" class="clear-search" type="button" aria-label="검색어 지우기">×</button>
+        </label>
+
+        <div class="filter-row" id="filterRow" aria-label="꿀팁 필터"></div>
+
+        <section class="content-section" aria-live="polite">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker" id="sectionKicker">TODAY</p>
+              <h2 id="sectionTitle">오늘의 꿀팁</h2>
+            </div>
+            <span class="result-count" id="resultCount"></span>
+          </div>
+          <div class="tips-list" id="tipsList"></div>
+        </section>
+      </main>
+
+      <button class="fab" id="newTipButton" type="button" aria-label="새 꿀팁 작성">+</button>
+    </div>
+
+    <div class="modal" id="tipModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="tip"></div>
+      <section class="sheet tip-sheet" role="dialog" aria-modal="true" aria-labelledby="tipModalTitle">
+        <form id="tipForm">
+          <div class="sheet-header">
+            <button class="icon-button close-button" type="button" data-close="tip" aria-label="닫기">×</button>
+            <h2 id="tipModalTitle">새 꿀팁</h2>
+            <button class="favorite-toggle sheet-star" id="formFavorite" type="button" aria-label="즐겨찾기 설정">☆</button>
+          </div>
+
+          <div class="sheet-body">
+            <label class="field main-field">
+              <span>어떤 걸 깨달았나요?</span>
+              <textarea id="tipContent" rows="6" maxlength="1200" placeholder="작은 깨달음을 바로 적어보세요" required></textarea>
+              <small><span id="contentCount">0</span>/1200</small>
+            </label>
+
+            <fieldset class="field tag-fieldset">
+              <legend>태그</legend>
+              <div class="editor-tags" id="editorTags"></div>
+            </fieldset>
+
+            <label class="field secondary-field">
+              <span>제목 추가 <em>(선택)</em></span>
+              <input id="tipTitle" type="text" maxlength="80" placeholder="예: 스쿼트 스내치" />
+            </label>
+
+            <button class="delete-button" id="deleteTip" type="button">이 꿀팁 삭제</button>
+          </div>
+
+          <div class="sheet-footer">
+            <button class="save-button" type="submit">저장</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal" id="tagModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="tag"></div>
+      <section class="sheet compact-sheet" role="dialog" aria-modal="true" aria-labelledby="tagModalTitle">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="sheet-header compact-header">
+          <button class="icon-button close-button" type="button" data-close="tag" aria-label="닫기">×</button>
+          <h2 id="tagModalTitle">태그 관리</h2>
+          <span class="header-spacer"></span>
+        </div>
+        <div class="sheet-body tag-manager-body">
+          <form class="new-tag-form" id="newTagForm">
+            <label for="newTagInput">새 태그</label>
+            <div class="new-tag-row">
+              <input id="newTagInput" type="text" maxlength="18" placeholder="예: 역도" autocomplete="off" />
+              <button type="submit">추가</button>
+            </div>
+          </form>
+          <div class="managed-tags" id="managedTags"></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

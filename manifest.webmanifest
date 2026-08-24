@@ -1,0 +1,10 @@
+{
+  "name": "마이꿀팁 - 내가 발견한 작은 노하우",
+  "short_name": "마이꿀팁",
+  "description": "내가 직접 경험해서 얻은 작은 노하우를 빠르게 기록합니다.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F5FBFF",
+  "theme_color": "#F5FBFF",
+  "lang": "ko"
+}
